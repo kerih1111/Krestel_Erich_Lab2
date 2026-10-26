@@ -1,4 +1,4 @@
-@page
+@page "/"
 @model Krestel_Erich_Lab2.Pages.BookPages.IndexModel
 
 @{
@@ -17,7 +17,7 @@
                 @Html.DisplayNameFor(model => model.Book[0].Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Book[0].Author.FullName)
+                @Html.DisplayNameFor(model => model.Book[0].Author)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Book[0].Price)
@@ -26,29 +26,46 @@
                 @Html.DisplayNameFor(model => model.Book[0].PublishingDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Book[0].Publisher.PublisherName)
+                @Html.DisplayNameFor(model => model.Book[0].Publisher)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Book[0].BookCategories)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Book) {
-        <tr>
+@foreach (var item in Model.BookD.Books) {
+
+            string selectedRow = "";
+                if(item.ID == Model.BookID)
+                {
+                selectedRow = "table-succes";
+                }
+            <tr class="@selectedRow">
             <td>
-                @Html.DisplayFor(model => item.Title)
+                @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
-                @Html.DisplayFor(model => item.Author.FullName)
+                @Html.DisplayFor(modelItem => item.Author.FullName)
             </td>
             <td>
-                @Html.DisplayFor(model => item.Price)
+                @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                @Html.DisplayFor(model => item.PublishingDate)
+                @Html.DisplayFor(modelItem => item.PublishingDate)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Publisher.PublisherName)
             </td>
+            <td>
+              
+               @foreach (var category in item.BookCategories)
+                        {
+                            @category.Category.ID @: @category.Category.CategoryName <br />
+
+                        }
+                </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |

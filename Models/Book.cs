@@ -20,6 +20,7 @@ namespace Krestel_Erich_Lab2.Models
 
         public int? PublisherID { get; set; }
         public Publicator? Publisher { get; set; }
+        public ICollection<BookCategory>? BookCategories { get; set; }
 
     }
 }
