@@ -1,10 +1,12 @@
+using Krestel_Erich_Lab2.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using Krestel_Erich_Lab2.Models;
 
 namespace Krestel_Erich_Lab2.Pages.BookPages;
 
+[Authorize(Roles = "Admin")]
 public class DeleteModel : PageModel
 {
     private readonly Krestel_Erich_Lab2Context _context;
